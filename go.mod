@@ -5,6 +5,7 @@ go 1.17
 require gorm.io/gorm v1.22.5
 
 require (
+	github.com/google/uuid v1.3.0
 	github.com/jinzhu/now v1.1.4
 	github.com/snabb/isoweek v1.0.1
 )

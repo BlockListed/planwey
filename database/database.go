@@ -2,4 +2,4 @@ package database
 
 // Database
 
-// Conenct
+// Connect

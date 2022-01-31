@@ -10,6 +10,8 @@ import (
 
 var DurationOneDay, _ = time.ParseDuration("24h")
 
+type BlackListedDays uint8
+
 // `Time` specifies time in seconds since 00:00 on the given Weekday
 // `Weekday` specifies day of week starting from sunday which is 0
 type WeeklyAtTime struct {
@@ -42,4 +44,5 @@ type Task struct {
 	Due         time.Time
 	User        User     `gorm:"not null"`
 	Timeslot    Timeslot `gorm:"not null"`
+	BlackListedDays
 }
