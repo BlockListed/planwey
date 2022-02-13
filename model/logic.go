@@ -15,6 +15,15 @@ func (b *BlackListedDays) AddDay(day uint8) {
 	*b |= (1 << day)
 }
 
+// Remove day from blacklisted days
+func (b *BlackListedDays) RemoveDay(day uint8) {
+	if !b.CheckDay(day) {
+		return
+	} else {
+		*b ^= (1 << day)
+	}
+}
+
 // Check day from bitfield
 func (b *BlackListedDays) CheckDay(day uint8) bool {
 	return ((*b & (1 << day)) >> day) == 1

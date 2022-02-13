@@ -24,4 +24,9 @@ func TestCheckDay(t *testing.T) {
 	if r {
 		t.Errorf("x = xxx1xxxx; x.CheckDay(2) = %t; want false", r)
 	}
+	x.RemoveDay(4)
+	r = x.CheckDay(4)
+	if r {
+		t.Errorf("x = xxxxxxxx; x.CheckDay(4) = %t; want false", r)
+	}
 }

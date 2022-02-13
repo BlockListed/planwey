@@ -16,11 +16,10 @@ type BlackListedDays uint8
 // `Weekday` specifies day of week starting from sunday which is 0
 type WeeklyAtTime struct {
 	Weekday uint8 `gorm:"not null"`
-	Time    int64 `gorm:"not null"`
+	Time    int32 `gorm:"not null"`
 }
 
 type model struct {
-	Id        string `gorm:"primaryKey;not null;unique"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
@@ -28,21 +27,27 @@ type model struct {
 
 type User struct {
 	model
-	DiscordId uint64
+	UserID    string `gorm:"primaryKey;not null;unique"`
+	DiscordID string
 	Name      string `gorm:"not null"`
 }
 
 type Timeslot struct {
 	model
+	TimeslotID string `gorm:"primaryKey;not null;unique"`
 	WeeklyAtTime
-	User User `gorm:"not null"`
+	UserID string
+	User   User
 }
 
 type Task struct {
 	model
+	TaskID      string `gorm:"primaryKey;not null;unique"`
 	Description string
 	Due         time.Time
-	User        User     `gorm:"not null"`
-	Timeslot    Timeslot `gorm:"not null"`
+	UserID      string `gorm:"index"`
+	User        User
+	TimeslotID  string
+	Timeslot    Timeslot
 	BlackListedDays
 }
